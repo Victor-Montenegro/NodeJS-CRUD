@@ -79,6 +79,11 @@
                 "name": "victor"
             }
 
+--------
+
+    Route para remover um usuario : METHOD DELETE http://localhost:3333/user/{cpf}
+        
+        Ex: deve passar o cpf na url: http://localhost:3333/user/222.222.222.22
 
 
 

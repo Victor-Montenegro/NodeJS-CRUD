@@ -83,7 +83,26 @@ app.put(`/user/:cpf`,(request,response)=>{
 
     user.name = name;
 
-    return response.send();
+    return response.send({mensagem:"Atualização realizada com sucesso!"});
+
+});
+
+app.delete(`/user/:cpf`,(request,response)=>{
+
+    const { cpf } = request.params;
+
+    const user = User.find(
+        (user) => user.cpf === cpf
+    )
+    
+    if(!user){
+
+        return response.status(400).json({error: "usuario não encontrado!"});
+    }
+
+    User.splice(User.indexOf(user),1);
+
+    return response.json(User);
 
 });
 
