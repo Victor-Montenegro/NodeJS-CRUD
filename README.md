@@ -1,4 +1,59 @@
 
+## Instruções :wave:
+    url: http://localhost:3333
+
+    Route para cadastrar usuarios: METHOD POST http://localhost:3333/cadastrar
+    Ex: Passando os dados em json 
+    body:
+        {
+            "name": "Joao",
+            "email": "jvc@jvc.com",
+            "passworld": "123"
+        }
+
+    response: 
+         {
+            "id": "67af0077-6198-423e-ab44-db950a382339",
+            "name": "Joao",
+            "email": "jvc@jvc.com",
+            "passworld": "123",
+            "status": "user",
+            "createdAt": "2021-07-10T12:16:58.602Z"
+        }
+
+--------
+
+    Route para visualizar todos os usuarios: METHOD GET http://localhost:3333/users
+    
+    Necessario que passe email e senha do admin para visualizar todos os usuarios
+    Ex: passando os dados em json
+    body:
+        {
+            "email": "admin@admin.com",
+	        "passworld": "123"
+        }
+
+    response:
+        [
+            {
+                "id": "cd1e58de-1ea8-4caa-b8cd-b44087e22fc5",
+                "name": "admin",
+                "email": "admin@admin.com",
+                "passworld": "123",
+                "status": "admin",
+                "createdAt": "2021-07-10T12:24:57.459Z"
+            },
+            {
+                "id": "5c055bda-871e-42f3-8ad6-fa68dd8ee274",
+                "name": "Joao",
+                "email": "jvc@jvc.com",
+                "passworld": "123",
+                "status": "user",
+                "createdAt": "2021-07-10T12:25:00.299Z"
+            }
+        ]
+
+--------
 
 
 
