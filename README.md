@@ -1,5 +1,10 @@
 
 ## Instruções :wave:
+
+    yarn add package.json || npm install package.json
+
+    yarn dev || node src/index.js
+----
     url: http://localhost:3333
 
     Route para cadastrar usuarios: METHOD POST http://localhost:3333/cadastrar
@@ -8,6 +13,7 @@
         {
             "name": "Joao",
             "email": "jvc@jvc.com",
+            "cpf": "222.222.222.22",
             "passworld": "123"
         }
 
@@ -17,6 +23,7 @@
             "name": "Joao",
             "email": "jvc@jvc.com",
             "passworld": "123",
+            "cpf": "222.222.222.22",
             "status": "user",
             "createdAt": "2021-07-10T12:16:58.602Z"
         }
@@ -40,6 +47,7 @@
                 "name": "admin",
                 "email": "admin@admin.com",
                 "passworld": "123",
+                cpf: "333.333.333.33",
                 "status": "admin",
                 "createdAt": "2021-07-10T12:24:57.459Z"
             },
@@ -48,12 +56,28 @@
                 "name": "Joao",
                 "email": "jvc@jvc.com",
                 "passworld": "123",
+                "cpf": "222.222.222.22",
                 "status": "user",
                 "createdAt": "2021-07-10T12:25:00.299Z"
             }
         ]
 
 --------
+
+    Route para visualizar um usuario : METHOD GET http://localhost:3333/user/{cpf}
+        
+        Ex: deve passar o cpf na url: http://localhost:3333/user/222.222.222.22
+
+--------
+
+    Route para atualizar o nome de um usuario : METHOD PUT http://localhost:3333/user/{cpf}
+
+        deve passar o cpf na url: http://localhost:3333/user/222.222.222.22
+        Ex: passando os dados em json
+        body
+            {
+                "name": "victor"
+            }
 
 
 
