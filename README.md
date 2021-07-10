@@ -64,15 +64,19 @@
 
 --------
 
-    Route para visualizar um usuario : METHOD GET http://localhost:3333/user/{cpf}
+    Route para visualizar um usuario : METHOD GET http://localhost:3333/user
         
-        Ex: deve passar o cpf na url: http://localhost:3333/user/222.222.222.22
+        deve passar o cpf no header do request
+        header:
+            cpf: 222.222.222.22
 
 --------
 
-    Route para atualizar o nome de um usuario : METHOD PUT http://localhost:3333/user/{cpf}
+    Route para atualizar o nome de um usuario : METHOD PUT http://localhost:3333/user
 
-        deve passar o cpf na url: http://localhost:3333/user/222.222.222.22
+        deve passar o cpf no header do request
+        header:
+            cpf: 222.222.222.22
         Ex: passando os dados em json
         body
             {
@@ -81,10 +85,11 @@
 
 --------
 
-    Route para remover um usuario : METHOD DELETE http://localhost:3333/user/{cpf}
-        
-        Ex: deve passar o cpf na url: http://localhost:3333/user/222.222.222.22
+    Route para remover um usuario : METHOD DELETE http://localhost:3333/user
 
+        deve passar o cpf no header do request
+            header:
+                cpf: 222.222.222.22       
 
 
 

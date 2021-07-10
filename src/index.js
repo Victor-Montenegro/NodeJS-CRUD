@@ -17,6 +17,23 @@ let User = [
     }
 ]
 
+function verificarCPF(request, response, next){
+
+    const { cpf } = request.headers
+
+    const user = User.find( 
+        (user) => user.cpf === cpf
+    );
+
+    if(!user){
+        return response.status(400).json({error: "usuario não encontrado!"});
+    }
+
+    request.user = user;
+
+    next();
+}
+
 app.post(`/cadastrar`, (request,response)=>{
 
     const { name, email, cpf, passworld, } = request.body
@@ -49,37 +66,21 @@ app.get(`/users`, (request,response)=>{
     return response.json(User);
 });
 
-app.get(`/user/:cpf`, (request,response)=>{
+app.get(`/user`,verificarCPF, (request,response)=>{
 
     const { cpf } = request.params;
 
-
-    const user = User.find( 
-        (user) => user.cpf === cpf
-    );
-
-    if(!user){
-
-        return response.status(400).json({error: "usuario não encontrado!"});
-    }
+    const { user } = request;
 
     return response.json(user);
     
 });
 
-app.put(`/user/:cpf`,(request,response)=>{
+app.put(`/user`,verificarCPF, (request,response)=>{
 
-    const { cpf } = request.params;
     const { name } = request.body;
 
-    const user = User.find(
-        (user) => user.cpf === cpf
-    )
-
-    if(!user){
-
-        return response.status(400).json({error: "usuario não encontrado!"});
-    }
+    const { user } = request;
 
     user.name = name;
 
@@ -87,18 +88,9 @@ app.put(`/user/:cpf`,(request,response)=>{
 
 });
 
-app.delete(`/user/:cpf`,(request,response)=>{
+app.delete(`/user`,verificarCPF, (request,response)=>{
 
-    const { cpf } = request.params;
-
-    const user = User.find(
-        (user) => user.cpf === cpf
-    )
-    
-    if(!user){
-
-        return response.status(400).json({error: "usuario não encontrado!"});
-    }
+    const { user } = request;
 
     User.splice(User.indexOf(user),1);
 
