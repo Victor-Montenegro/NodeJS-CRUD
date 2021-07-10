@@ -1,11 +1,12 @@
 const express = require(`express`);
 const { v4: uuid } = require(`uuid`);
 
+const mongoose = require(`./database/index.js`);
+
 const app = express();
 
 app.use(express.json());
 
-let User = []
 
 function verificarCPF(request, response, next){
 
