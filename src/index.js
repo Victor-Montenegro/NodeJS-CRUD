@@ -5,17 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-let User = [
-    {
-        id: uuid(),
-        name: "admin",
-        email: "admin@admin.com",
-        passworld: "123",
-        cpf: "333.333.333.33",
-        status: "admin",
-        createdAt: new Date()
-    }
-]
+let User = []
 
 function verificarCPF(request, response, next){
 
@@ -53,14 +43,8 @@ app.post(`/cadastrar`, (request,response)=>{
 
 app.get(`/users`, (request,response)=>{
 
-    const { email,passworld } = request.body;
-
-    const verificarAdmin = User.some(
-        (user) => user.email === email && user.passworld == passworld
-    );
-
-    if(!verificarAdmin){
-        return response.status(401).json({Error: "senha ou email incorreto!"});
+    if(User.length == 0){
+        return response.status(200).json({mensagem: "não existem usuarios!"});
     }
 
     return response.json(User);
