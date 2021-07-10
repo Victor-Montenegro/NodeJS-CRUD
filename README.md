@@ -8,7 +8,7 @@
 
 ## Olá, tudo bem! :wave:
     Eu sou João Victor Montenegro Rocha, mas pode me chamar de João. Atualmente desenvolvendo aplicações web
-    com nodejs e sempre em busca de crescimento e aprimoramento profissional e pessoal. 
+    com nodejs e sempre estou em busca de crescimento e aprimoramento profissional e pessoal. 
 
     Estou disposto a trabalhar em um ambiente que proporcione conhecimento e crescimento profissional. Tenho como 
     objetivo de me atualizar para novas tecnologias e poder ajudar a comunidade e os novos developers.
