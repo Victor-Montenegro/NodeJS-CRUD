@@ -24,7 +24,6 @@
             "email": "jvc@jvc.com",
             "passworld": "123",
             "cpf": "222.222.222.22",
-            "status": "user",
             "createdAt": "2021-07-10T12:16:58.602Z"
         }
 
@@ -41,7 +40,6 @@
                 "email": "jvc@jvc.com",
                 "passworld": "123",
                 "cpf": "222.222.222.22",
-                "status": "user",
                 "createdAt": "2021-07-10T12:25:00.299Z"
             }
         ]

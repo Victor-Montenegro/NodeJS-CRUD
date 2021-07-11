@@ -19,19 +19,17 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("user", UserSchema);
 
 
-function verificarCPF(request, response, next){
+async function verificarCPF(request, response, next){
 
     const { cpf } = request.headers
 
-    const user = User.find( 
-        (user) => user.cpf === cpf
-    );
+    const user = await User.findOne({cpf: cpf}).exec();
 
-    if(!user){
-        return response.status(400).json({error: "usuario não encontrado!"});
-    }
+     if(!user){
+         return response.status(400).json({error: "usuario não encontrado!"});
+     }
 
-    request.user = user;
+     request.user = user;
 
     next();
 }
@@ -63,7 +61,6 @@ app.get(`/users`, async (request,response)=>{
 
 app.get(`/user`,verificarCPF, (request,response)=>{
 
-    const { cpf } = request.params;
 
     const { user } = request;
 
@@ -71,25 +68,25 @@ app.get(`/user`,verificarCPF, (request,response)=>{
     
 });
 
-app.put(`/user`,verificarCPF, (request,response)=>{
+app.put(`/user`,verificarCPF, async (request,response)=>{
 
     const { name } = request.body;
 
     const { user } = request;
 
-    user.name = name;
+    await User.updateOne(user,{name: name});
 
     return response.send({mensagem:"Atualização realizada com sucesso!"});
 
 });
 
-app.delete(`/user`,verificarCPF, (request,response)=>{
+app.delete(`/user`,verificarCPF, async(request,response)=>{
 
     const { user } = request;
 
-    User.splice(User.indexOf(user),1);
+    await User.deleteOne(user);
 
-    return response.json(User);
+    return response.json(user);
 
 });
 
