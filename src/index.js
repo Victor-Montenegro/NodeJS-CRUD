@@ -1,5 +1,6 @@
 const express = require(`express`);
 const { v4: uuid } = require(`uuid`);
+const { hash } = require(`bcryptjs`);
 
 const mongoose = require(`./database/index.js`);
 
@@ -12,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     name: {type: String, require: true},
     email: {type: String, require: true},
     cpf: {type: String, require: true},
-    passworld: { type: String, require: true},
+    passworld: { type: String, require: true, select:false},
     createdAt: {type: Date, default: Date.now}
 })
 
@@ -34,8 +35,10 @@ async function verificarCPF(request, response, next){
     next();
 }
 
-app.post(`/cadastrar`, (request,response)=>{
+app.post(`/cadastrar`, async(request,response)=>{
 
+    request.body.passworld = await hash(request.body.passworld, 8);
+    
     const user = new User(request.body);
 
     user.save(function(err){
