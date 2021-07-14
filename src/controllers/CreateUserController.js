@@ -10,7 +10,6 @@ class CreateUserController{
         
         req.body.passworld = await hash(req.body.passworld,8);  
         
-
         const user = new User(req.body);
 
         user.save(function(err){
